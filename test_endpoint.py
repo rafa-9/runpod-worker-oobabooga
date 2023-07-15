@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
-import io
-import uuid
-import base64
 import json
 import requests
 import time
-from PIL import Image
 
-RUNPOD_API_KEY = ''
-SERVERLESS_ENDPOINT_ID = ''
+RUNPOD_API_KEY = 'INSERT_RUNPOD_API_KEY_HERE'
+SERVERLESS_ENDPOINT_ID = 'INSERT_RUNPOD_ENDPOINT_ID_HERE'
 RUNPOD_ENDPOINT_BASE_URL = f'https://api.runpod.ai/v2/{SERVERLESS_ENDPOINT_ID}'
+
+
+def get_response_output(resp_json):
+    result = resp_json['output']['results'][0]['history']
+    print(result['visible'][-1][1])
 
 
 if __name__ == '__main__':
     # Create the payload dictionary
     payload = {
         "input": {
-            "source_image": source_image_base64,
-            "target_image": target_image_base64
+            "user_input": "Please give me a step-by-step guide on how to plant a tree in my backyard."
         }
     }
 
@@ -35,7 +35,7 @@ if __name__ == '__main__':
         resp_json = r.json()
 
         if 'output' in resp_json and 'image' in resp_json['output']:
-            save_result_image(resp_json)
+            get_response_output(resp_json)
         else:
             job_status = resp_json['status']
             print(f'Job status: {job_status}')
@@ -67,7 +67,7 @@ if __name__ == '__main__':
                         elif job_status == 'COMPLETED':
                             request_in_queue = False
                             print(f'RunPod request {request_id} completed')
-                            save_result_image(resp_json)
+                            get_response_output(resp_json)
                         elif job_status == 'TIMED_OUT':
                             request_in_queue = False
                             print(f'ERROR: RunPod request {request_id} timed out')
