@@ -4,14 +4,15 @@
 
 This is the source code for a [RunPod](https://runpod.io?ref=w18gds2n)
 Serverless worker that uses [Oobabooga Text Generation](
-https://huggingface.co/deepinsight/inswapper/tree/main) for text generation
-AI tasks.
+https://github.com/oobabooga/text-generation-webui) API for
+LLM text generation AI tasks.
 
 ## Model
 
 The worker uses the [Pygmalion-13B-SuperHOT-8K-GPTQ](
 https://huggingface.co/TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ)
-model by [TheBloke](https://huggingface.co/TheBloke).
+model by [TheBloke](https://huggingface.co/TheBloke).  Feel free to fork
+the repo and switch it to an alternate model.
 
 ## Building the Worker
 
