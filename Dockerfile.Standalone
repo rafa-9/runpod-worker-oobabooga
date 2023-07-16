@@ -35,9 +35,7 @@ RUN git clone https://github.com/oobabooga/text-generation-webui && \
     mkdir -p repositories && \
     cd repositories && \
     git clone https://github.com/turboderp/exllama && \
-    pip3 install -r exllama/requirements.txt && \
-    python3 create_test_json.py && \
-    python3 -u rp_handler.py
+    pip3 install -r exllama/requirements.txt
 
 # Install AutoGPTQ, overwriting the version automatically installed by text-generation-webui
 ARG AUTOGPTQ="0.2.2"
