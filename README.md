@@ -1,6 +1,6 @@
 # oobabooga | RunPod Serverless Worker
 
-## NOTE: THIS IS STILL A WORK IN PROGRESS AND NOT READY TO BE USED YET
+## NOTE: Only the Standalone version has been tested, not the Network Volume version 
 
 This is the source code for a [RunPod](https://runpod.io?ref=w18gds2n)
 Serverless worker that uses [Oobabooga Text Generation](
