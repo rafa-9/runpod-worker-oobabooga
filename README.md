@@ -28,12 +28,25 @@ build a light weight Docker image that runs everything
 from the Network volume without installing the application
 inside the Docker image.
 
+You can either launch a new pod with a Network Volume attached
+by using my [Text Generation Web UI and API](
+https://runpod.io/gsc?template=el5m58e1to&ref=w18gds2n) custom
+[RunPod](https://runpod.io?ref=w18gds2n) template, or alternatively,
+you can install it manually following instructions below.  If you
+choose to use my custom template, it is **VERY IMPORTANT** to
+ensure that you first create a Network Volume and then attach
+it when launching the new pod in **Secure Cloud**.  You cannot
+launch a pod with a Network Volume in Community Cloud.
+
 1. [Create a RunPod Account](https://runpod.io?ref=w18gds2n).
 2. Create a [RunPod Network Volume](https://www.runpod.io/console/user/storage).
 3. Attach the Network Volume to a Secure Cloud [GPU pod](https://www.runpod.io/console/gpu-secure-cloud).
 4. Select a light-weight template such as RunPod Pytorch.
 5. Deploy the GPU Cloud pod.
-6. Once the pod is up, open a Terminal and install the required dependencies:
+6. Once the pod is up, open a Terminal and install the required
+   dependencies if you have opted for a manual installation
+   (you can skip to step 8 below if you have opted to use my
+   custom template):
 ```bash
 cd /workspace
 git clone https://github.com/oobabooga/text-generation-webui.git
