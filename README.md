@@ -51,8 +51,8 @@ launch a pod with a Network Volume in Community Cloud.
 cd /workspace
 git clone https://github.com/oobabooga/text-generation-webui.git
 cd text-generation-webui
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv /workspace/venv
+source /workspace/venv/bin/activate
 pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip3 install -r requirements.txt
 bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done'
@@ -65,6 +65,13 @@ export CUDA_VERSION=""
 export TORCH_CUDA_ARCH_LIST="8.0;8.6+PTX;8.9;9.0"
 pip3 uninstall -y auto-gptq && \
     pip3 install --no-cache-dir auto-gptq==${AUTOGPTQ_VERSION}
+pip3 install huggingface_hub runpod>=0.10.0
+```
+7. Install the Serverless dependencies:
+```bash
+deactivate
+cd /workspace/text-generation-webui
+source /workspace/venv/bin/activate
 pip3 install huggingface_hub runpod>=0.10.0
 ```
 7. Download a model, for example `TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ`:
