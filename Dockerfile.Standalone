@@ -1,5 +1,7 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 
+ARG MODEL="TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ"
+
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
     PYTHONUNBUFFERED=1
@@ -27,6 +29,7 @@ RUN git clone https://github.com/oobabooga/text-generation-webui && \
     cd text-generation-webui && \
     python3 -m venv venv && \
     source venv/bin/activate && \
+    pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip3 install -r requirements.txt && \
     bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done' && \
     mkdir -p repositories && \
@@ -45,8 +48,15 @@ RUN source /workspace/text-generation-webui/venv/bin/activate && \
     pip3 install --no-cache-dir auto-gptq==${AUTOGPTQ} && \
     deactivate
 
+# Fetch the model
+COPY download_model.py fetch_model.py /
+RUN source /workspace/text-generation-webui/venv/bin/activate && \
+    pip3 install huggingface_hub runpod>=0.10.0 && \
+    fetch_model.py ${MODEL} /workspace/text-generation-webui/models
+
 # Docker container start script
 COPY start_standalone.sh /start.sh
+COPY rp_handler.py /
 
 # Start the container
 RUN chmod +x /start.sh

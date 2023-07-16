@@ -16,6 +16,11 @@ the repo and switch it to an alternate model.
 
 ## Building the Worker
 
+There are two options:
+
+1. Network Volume
+2. Standalone
+
 ### Option 1: Network Volume
 
 This will store your application on a Runpod Network Volume and
@@ -31,28 +36,31 @@ inside the Docker image.
 6. Once the pod is up, open a Terminal and install the required dependencies:
 ```bash
 cd /workspace
-git clone https://github.com/ashleykleynhans/runpod-worker-oobabooga.git
-cd runpod-worker-oobabooga
+git clone https://github.com/oobabooga/text-generation-webui.git
+cd text-generation-webui
 python3 -m venv venv
 source venv/bin/activate
+pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip3 install -r requirements.txt
-apt update
-apt -y install git-lfs
-git lfs install
+bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done'
+mkdir -p repositories
+cd repositories
+git clone https://github.com/turboderp/exllama
+pip3 install -r exllama/requirements.txt
+export AUTOGPTQ_VERSION="0.2.2"
+export CUDA_VERSION=""
+export TORCH_CUDA_ARCH_LIST="8.0;8.6+PTX;8.9;9.0"
+pip3 uninstall -y auto-gptq && \
+    pip3 install --no-cache-dir auto-gptq==${AUTOGPTQ_VERSION}
+pip3 install huggingface_hub runpod>=0.10.0
 ```
-7. Edit the `create_test_json.py` file and ensure that you set `USER_INPUT` to
-   whatever input you want the Text Generation API to respond to.
-8. Create the `test_input.json` file by running the `create_test_json.py` script:
+7. Download a model, for example `TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ`:
 ```bash
-python3 create_test_json.py
+python3 download-model.py TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ \
+  --output /workspace/text-generation-webui/models
 ```
-9. Run an inference on the `test_input.json` input so that the models can be cached on
-   your Network Volume, which will dramatically reduce cold start times for RunPod Serverless:
-```bash
-python3 -u rp_handler.py
-```
-10. Sign up for a Docker hub account if you don't already have one.
-11. Build the Docker image and push to Docker hub:
+8. Sign up for a Docker hub account if you don't already have one.
+9. Build the Docker image on your local machine and push to Docker hub:
 ```bash
 docker build -t dockerhub-username/runpod-worker-oobabooga:1.0.0 -f Dockerfile.Network_Volume .
 docker login
