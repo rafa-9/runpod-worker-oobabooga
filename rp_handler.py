@@ -48,6 +48,7 @@ INPUT_SCHEMA = {
     'instruction_template': {
         'type': str,
         'required': False
+        'default': 'Vicuna-v1.1'
     },
     'your_name': {
         'type': str,
