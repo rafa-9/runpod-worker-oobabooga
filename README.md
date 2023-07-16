@@ -65,7 +65,6 @@ export CUDA_VERSION=""
 export TORCH_CUDA_ARCH_LIST="8.0;8.6+PTX;8.9;9.0"
 pip3 uninstall -y auto-gptq && \
     pip3 install --no-cache-dir auto-gptq==${AUTOGPTQ_VERSION}
-pip3 install huggingface_hub runpod>=0.10.0
 ```
 7. Install the Serverless dependencies:
 ```bash
