@@ -12,9 +12,9 @@ nohup python3 server.py \
   --listen \
   --api \
   --model ${MODEL} \
-  --listen-port 3001 \
-  --api-blocking-port 5001 \
-  --api-streaming-port 5006 &> /workspace/logs/textgen.log &
+  --listen-port 3000 \
+  --api-blocking-port 5000 \
+  --api-streaming-port 5005 &> /workspace/logs/textgen.log &
 
 echo "Starting RunPod Handler"
 export PYTHONUNBUFFERED=1
