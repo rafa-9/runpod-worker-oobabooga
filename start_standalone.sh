@@ -5,7 +5,7 @@ MODEL="TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ"
 echo "Worker Initiated"
 
 echo "Starting Oobabooga Text Generation Server"
-source /workspace/runpod-worker-oobabooga/venv/bin/activate
+source /workspace/text-generation-webui/venv/bin/activate
 mkdir -p /workspace/logs
 nohup python server.py \
   --listen \
