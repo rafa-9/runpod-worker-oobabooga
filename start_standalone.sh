@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ"
+MODEL="TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ"
 
 echo "Worker Initiated"
 

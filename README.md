@@ -45,7 +45,7 @@ launch a pod with a Network Volume in Community Cloud.
 5. Deploy the GPU Cloud pod.
 6. Once the pod is up, open a Terminal and install the required
    dependencies if you have opted for a manual installation
-   (you can skip to step 8 below if you have opted to use my
+   (you can skip to step 7 below if you have opted to use my
    custom template):
 ```bash
 cd /workspace
