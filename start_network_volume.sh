@@ -8,9 +8,10 @@ echo "Symlinking files from Network Volume"
 ln -s /runpod-volume /workspace
 
 echo "Starting Oobabooga Text Generation Server"
+cd /workspace/text-generation-webui
 source /workspace/text-generation-webui/venv/bin/activate
 mkdir -p /workspace/logs
-nohup python server.py \
+nohup python3 server.py \
   --listen \
   --api \
   --model ${MODEL} \
