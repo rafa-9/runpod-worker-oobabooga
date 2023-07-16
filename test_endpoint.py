@@ -10,7 +10,12 @@ RUNPOD_ENDPOINT_BASE_URL = f'https://api.runpod.ai/v2/{SERVERLESS_ENDPOINT_ID}'
 
 def get_response_output(resp_json):
     result = resp_json['output']['results'][0]['history']
-    print(result['visible'][-1][1])
+
+    if len(result['visible']):
+        print(result['visible'][-1][1])
+    else:
+        print('No visible output received from endpoint')
+        print(json.dumps(resp_json, indent=4, default=str))
 
 
 if __name__ == '__main__':
@@ -34,8 +39,10 @@ if __name__ == '__main__':
     if r.status_code == 200:
         resp_json = r.json()
 
-        if 'output' in resp_json and 'image' in resp_json['output']:
+        if 'output' in resp_json and 'results' in resp_json['output']:
             get_response_output(resp_json)
+        elif 'output' in resp_json and 'errors' in resp_json['output']:
+            print(f'ERROR: {json.dumps(resp_json["output"]["errors"], indent=4, default=str)}')
         else:
             job_status = resp_json['status']
             print(f'Job status: {job_status}')
@@ -64,6 +71,9 @@ if __name__ == '__main__':
                         elif job_status == 'FAILED':
                             request_in_queue = False
                             print(f'RunPod request {request_id} failed')
+                        elif job_status == 'CANCELLED':
+                            request_in_queue = False
+                            print(f'RunPod request {request_id} cancelled')
                         elif job_status == 'COMPLETED':
                             request_in_queue = False
                             print(f'RunPod request {request_id} completed')
@@ -75,8 +85,8 @@ if __name__ == '__main__':
                             request_in_queue = False
                             print(f'ERROR: Invalid status response from RunPod status endpoint')
                             print(json.dumps(resp_json, indent=4, default=str))
-            elif job_status == 'COMPLETED' and resp_json['output']['status'] == 'error':
-                print(f'ERROR: {resp_json["output"]["message"]}')
+            elif job_status == 'COMPLETED' and 'errors' in resp_json['output']:
+                print(f'ERROR: {json.dumps(resp_json["output"]["errors"], indent=4, default=str)}')
             else:
                 print(json.dumps(resp_json, indent=4, default=str))
     else:
