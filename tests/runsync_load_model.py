@@ -6,7 +6,7 @@ from dotenv import dotenv_values
 
 
 def get_response_output(resp_json):
-    print(json.dumps(resp_json['output']['result']))
+    print(json.dumps(resp_json['output']['result'], indent=4, default=str))
 
 
 if __name__ == '__main__':
