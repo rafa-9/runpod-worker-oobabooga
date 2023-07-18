@@ -26,6 +26,10 @@ if __name__ == '__main__':
 
     # Create the payload dictionary
     payload = {
+        "api": {
+            "method": "POST",
+            "endpoint": "/chat"
+        },
         "input": {
             "user_input": "Please give me a step-by-step guide on how to plant a tree in my backyard."
         }
