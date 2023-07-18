@@ -26,9 +26,7 @@ if __name__ == '__main__':
                 "endpoint": "/model"
             },
             "payload": {
-                "action": "load",
-                "model_name": "TheBloke_Pygmalion-13B-SuperHOT-8K-GPTQ",
-                "args": {}
+                "action": "unload"
             }
         }
     }

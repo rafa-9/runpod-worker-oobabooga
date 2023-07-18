@@ -34,7 +34,7 @@ if __name__ == '__main__':
     }
 
     r = requests.post(
-        f'{runpod_endpoint_base_url}/runsync',
+        f'{runpod_endpoint_base_url}/run',
         headers={
             'Authorization': f'Bearer {runpod_api_key}'
         },
