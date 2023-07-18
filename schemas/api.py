@@ -14,7 +14,8 @@ API_SCHEMA = {
             'generate',
             'chat',
             'stop-stream',
-            'model'
+            'model',
+            'token-count'
         ]
     }
 }
