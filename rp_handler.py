@@ -8,6 +8,8 @@ from requests.adapters import HTTPAdapter, Retry
 from schemas.api import API_SCHEMA
 from schemas.chat import CHAT_SCHEMA
 from schemas.generate import GENERATE_SCHEMA
+from schemas.token_count import TOKEN_COUNT_SCHEMA
+from schemas.model import MODEL_SCHEMA
 
 BASE_URL = 'http://127.0.0.1:5000/api/v1'
 TIMEOUT = 600
@@ -15,6 +17,7 @@ TIMEOUT = 600
 VALIDATION_SCHEMAS = {
     'chat': CHAT_SCHEMA,
     'generate': GENERATE_SCHEMA,
+    'token-count': TOKEN_COUNT_SCHEMA
 }
 
 session = requests.Session()
@@ -76,6 +79,7 @@ def validate_api(event):
 
 
 def validate_payload(event):
+    method = event['input']['api']['method']
     endpoint = event['input']['api']['endpoint']
     payload = event['input']['payload']
     validated_input = {}
@@ -84,6 +88,10 @@ def validate_payload(event):
         validated_input = validate(payload, GENERATE_SCHEMA)
     elif endpoint == 'chat':
         validated_input = validate(payload, CHAT_SCHEMA)
+    elif endpoint == 'token-count':
+        validated_input = validate(payload, TOKEN_COUNT_SCHEMA)
+    elif endpoint == 'model' and method == 'POST':
+        validated_input = validate(payload, MODEL_SCHEMA)
 
     return endpoint, event['input']['api']['method'], validated_input
 
@@ -103,7 +111,10 @@ def handler(event):
             'error': validated_input['errors']
         }
 
-    payload = validated_input['validated_input']
+    if 'validated_input' in validated_input:
+        payload = validated_input['validated_input']
+    else:
+        payload = {}
 
     try:
         logger.log(f'Sending {method} request to: {endpoint}')
