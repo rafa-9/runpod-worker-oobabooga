@@ -2,10 +2,7 @@
 import json
 import requests
 import time
-
-RUNPOD_API_KEY = 'INSERT_RUNPOD_API_KEY_HERE'
-SERVERLESS_ENDPOINT_ID = 'INSERT_RUNPOD_ENDPOINT_ID_HERE'
-RUNPOD_ENDPOINT_BASE_URL = f'https://api.runpod.ai/v2/{SERVERLESS_ENDPOINT_ID}'
+from dotenv import dotenv_values
 
 
 def get_response_output(resp_json):
@@ -19,6 +16,14 @@ def get_response_output(resp_json):
 
 
 if __name__ == '__main__':
+    # Load the .env file which contains the following:
+    # RUNPOD_API_KEY=YOUR_API_KEY
+    # SERVERLESS_ENDPOINT_ID=YOUR_ENDPOINT_ID
+    env = dotenv_values('.env')
+    runpod_api_key = env.get('RUNPOD_API_KEY')
+    serverless_endpoint_id = env.get('SERVERLESS_ENDPOINT_ID')
+    runpod_endpoint_base_url = f'https://api.runpod.ai/v2/{serverless_endpoint_id}'
+
     # Create the payload dictionary
     payload = {
         "input": {
@@ -27,9 +32,9 @@ if __name__ == '__main__':
     }
 
     r = requests.post(
-        f'{RUNPOD_ENDPOINT_BASE_URL}/runsync',
+        f'{runpod_endpoint_base_url}/run',
         headers={
-            'Authorization': f'Bearer {RUNPOD_API_KEY}'
+            'Authorization': f'Bearer {runpod_api_key}'
         },
         json=payload
     )
@@ -53,9 +58,9 @@ if __name__ == '__main__':
 
                 while request_in_queue:
                     r = requests.get(
-                        f'{RUNPOD_ENDPOINT_BASE_URL}/status/{request_id}',
+                        f'{runpod_endpoint_base_url}/status/{request_id}',
                         headers={
-                            'Authorization': f'Bearer {RUNPOD_API_KEY}'
+                            'Authorization': f'Bearer {runpod_api_key}'
                         }
                     )
 

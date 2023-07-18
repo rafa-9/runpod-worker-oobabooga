@@ -21,6 +21,7 @@ RUN apt update && \
 # Docker container start script
 COPY start_network_volume.sh /start.sh
 COPY rp_handler.py /
+COPY schemas /
 
 # Start the container
 RUN chmod +x /start.sh
