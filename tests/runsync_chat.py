@@ -26,17 +26,19 @@ if __name__ == '__main__':
 
     # Create the payload dictionary
     payload = {
-        "api": {
-            "method": "POST",
-            "endpoint": "/chat"
-        },
         "input": {
-            "user_input": "Please give me a step-by-step guide on how to plant a tree in my backyard."
+            "api": {
+                "method": "POST",
+                "endpoint": "/chat"
+            },
+            "payload": {
+                "user_input": "Please give me a step-by-step guide on how to plant a tree in my backyard."
+            }
         }
     }
 
     r = requests.post(
-        f'{runpod_endpoint_base_url}/run',
+        f'{runpod_endpoint_base_url}/runsync',
         headers={
             'Authorization': f'Bearer {runpod_api_key}'
         },

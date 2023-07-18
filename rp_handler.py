@@ -1,3 +1,4 @@
+import json
 import time
 import requests
 import runpod
@@ -57,31 +58,34 @@ def send_post_request(endpoint, payload):
 # RunPod Handler                                                               #
 # ---------------------------------------------------------------------------- #
 def validate_api(event):
-    if 'api' not in event:
+    if 'api' not in event['input']:
         return {
-            'errors': '"api" is a required field in the payload'
+            'errors': '"api" is a required field in the "input" payload'
         }
 
-    if type(event['api']) is not dict:
+    api = event['input']['api']
+
+    if type(api) is not dict:
         return {
             'errors': '"api" must be a dictionary containing "method" and "endpoint"'
         }
 
-    event['api']['endpoint'] = event['api']['endpoint'].lstrip('/')
+    api['endpoint'] = api['endpoint'].lstrip('/')
 
-    return validate(event['api'], API_SCHEMA)
+    return validate(api, API_SCHEMA)
 
 
-def validate_input(event):
-    endpoint = event['api']['endpoint']
+def validate_payload(event):
+    endpoint = event['input']['api']['endpoint']
+    payload = event['input']['payload']
     validated_input = {}
 
     if endpoint == 'generate':
-        validated_input = validate(event['input'], GENERATE_SCHEMA)
+        validated_input = validate(payload, GENERATE_SCHEMA)
     elif endpoint == 'chat':
-        validated_input = validate(event['input'], CHAT_SCHEMA)
+        validated_input = validate(payload, CHAT_SCHEMA)
 
-    return endpoint, event['api']['method'], validated_input
+    return endpoint, event['input']['api']['method'], validated_input
 
 
 def handler(event):
@@ -92,7 +96,7 @@ def handler(event):
             'error': validated_api['errors']
         }
 
-    endpoint, method, validated_input = validate_input(event)
+    endpoint, method, validated_input = validate_payload(event)
 
     if 'errors' in validated_input:
         return {
@@ -117,7 +121,7 @@ def handler(event):
 
 
 if __name__ == '__main__':
-    wait_for_service(url='http://127.0.0.1:5000/api/v1/model')
+    #wait_for_service(url='http://127.0.0.1:5000/api/v1/model')
     logger.log('Oobabooga API is ready', 'INFO')
     logger.log('Starting RunPod Serverless...', 'INFO')
     runpod.serverless.start(
