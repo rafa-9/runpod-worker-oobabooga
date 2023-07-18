@@ -55,7 +55,7 @@ RUN source /workspace/text-generation-webui/venv/bin/activate && \
 # Docker container start script
 COPY start_standalone.sh /start.sh
 COPY rp_handler.py /
-COPY schemas /
+COPY schemas /schemas
 
 # Start the container
 RUN chmod +x /start.sh
