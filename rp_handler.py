@@ -121,7 +121,7 @@ def handler(event):
 
 
 if __name__ == '__main__':
-    #wait_for_service(url='http://127.0.0.1:5000/api/v1/model')
+    wait_for_service(url='http://127.0.0.1:5000/api/v1/model')
     logger.log('Oobabooga API is ready', 'INFO')
     logger.log('Starting RunPod Serverless...', 'INFO')
     runpod.serverless.start(
