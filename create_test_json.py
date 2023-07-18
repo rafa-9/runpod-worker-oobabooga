@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 import json
 
-USER_INPUT = 'Please give me a step-by-step guide on how to plant a tree in my backyard.'
-
 
 if __name__ == '__main__':
     # Create the payload dictionary
     payload = {
+        "api": {
+          "method": "POST",
+          "endpoint": "/chat"
+        },
         "input": {
-            "user_input": USER_INPUT
+            "user_input": "Please give me a step-by-step guide on how to plant a tree in my backyard."
         }
     }
 
