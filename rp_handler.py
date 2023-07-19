@@ -57,9 +57,6 @@ def send_post_request(endpoint, payload):
     )
 
 
-# ---------------------------------------------------------------------------- #
-# RunPod Handler                                                               #
-# ---------------------------------------------------------------------------- #
 def validate_api(event):
     if 'api' not in event['input']:
         return {
@@ -96,6 +93,9 @@ def validate_payload(event):
     return endpoint, event['input']['api']['method'], validated_input
 
 
+# ---------------------------------------------------------------------------- #
+# RunPod Handler                                                               #
+# ---------------------------------------------------------------------------- #
 def handler(event):
     validated_api = validate_api(event)
 
