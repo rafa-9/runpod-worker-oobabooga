@@ -12,40 +12,54 @@ https://huggingface.co/TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ)
 model by [TheBloke](https://huggingface.co/TheBloke).  Feel free to fork
 the repo and switch it to an alternate model.
 
-## Building the Worker
+## Building the Docker image that will be used by the Serverless Worker
 
 There are two options:
 
-1. [Network Volume](docs/building-with-network-volume.md)
-2. [Standalone](docs/building-without-network-volume.md)
+1. [Network Volume](docs/building/with-network-volume.md)
+2. [Standalone](docs/building/without-network-volume.md) (without Network Volume)
 
-```bash
-docker build -t dockerhub-username/runpod-worker-oobabooga:1.0.0 -f Dockerfile.Standalone .
-docker login
-docker push dockerhub-username/runpod-worker-oobabooga:1.0.0
-```
+## RunPod  API Endpoint
 
-## Dockerfile
+You can send requests to your RunPod API Endpoint using the `/run`
+or `/runsync` endpoints.
 
-There are 2 different Dockerfile configurations
+Requests sent to the `/run` endpoint will be handled asynchronously,
+and are non-blocking operations.  Your first response status will always
+be `IN_QUEUE`.  You need to send subsequent requests to the `/status`
+endpoint to get further status updates, and eventually the `COMPLETED`
+status will be returned if your request is successful.
 
-1. Network_Volume - See Option 1 Above.
-2. Standalone - See Option 2 Above (No Network Volume is required for this option).
+Requests sent to the `/runsync` endpoint will be handled synchronously
+and are blocking operations.  If they are processed by a worker within
+90 seconds, the result will be returned in the response, but if
+the processing time exceeds 90 seconds, you will need to handle the
+response and request status updates from the `/status` endpoint until
+you receive the `COMPLETED` status which indicates that your request
+was successful.
 
-The worker is built using one of the two Dockerfile configurations
-depending on your specific requirements.
+### Available Ooobabooga APIs
 
-## API
+* [Chat](docs/api/chat.md)
+* [Generate](docs/api/generate.md)
+* [Get Model](docs/api/get-model.md)
+* [List Models](docs/api/list-models.md)
+* [Load Model](docs/api/load-model.md)
+* [Model Info](docs/api/model-info.md)
+* [Stop Stream](docs/api/stop-stream.md)
+* [Token Count](docs/api/token-count.md)
+* [Unload Model](docs/api/unload-model.md)
 
-The worker provides an API for inference. The API payload looks like this:
+### Endpoint Status Codes
 
-```json
-{
-  "input": {
-    "user_input": "Please give me a step-by-step guide on how to plant a tree in my backyard."
-  }
-}
-```
+| Status      | Description                                                                                                                     |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------|
+| IN_QUEUE    | Request is in the queue waiting to be picked up by a worker.  You can call the `/status` endpoint to check for status updates.  |
+| IN_PROGRESS | Request is currently being processed by a worker.  You can call the `/status` endpoint to check for status updates.             |
+| FAILED      | The request failed, most likely due to encountering an error.                                                                   |
+| CANCELLED   | The request was cancelled.  This usually happens when you call the `/cancel` endpoint to cancel the request.                    |
+| TIMED_OUT   | The request timed out.  This usually happens when your handler throws some kind of exception that does return a valid response. |
+| COMPLETED   | The request completed successfully and the output is available in the `output` field of the response.                           |
 
 ## Serverless Handler
 
@@ -54,31 +68,6 @@ inference requests.  It defines a function handler(event) that takes an
 inference request, runs the inference using the [oobabooba](
 https://github.com/oobabooga/text-generation-webui) Text Generation API,
 and returns the output as a JSON response in the following format:
-
-```json
-{
-  "output": {
-     "results": [
-        {
-           "history": {
-              "internal": [
-                 [
-                    "Please give me a step-by-step guide on how to plant a tree in my backyard.",
-                    "Sure! First you need to dig a hole that is about 1 foot deep by 2 feet wide. Then put some soil into it so there are no air pockets inside of it. Next, place your seedling or sapling into the hole with its roots facing downwards. Finally, cover up the hole with more dirt until only the top few inches of the root ball remain exposed above ground level."
-                 ]
-              ],
-              "visible": [
-                 [
-                    "Please give me a step-by-step guide on how to plant a tree in my backyard.",
-                    "Sure! First you need to dig a hole that is about 1 foot deep by 2 feet wide. Then put some soil into it so there are no air pockets inside of it. Next, place your seedling or sapling into the hole with its roots facing downwards. Finally, cover up the hole with more dirt until only the top few inches of the root ball remain exposed above ground level."
-                 ]
-              ]
-           }
-        }
-     ]
-  }
-}
-```
 
 ## Acknowledgements
 
