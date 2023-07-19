@@ -72,7 +72,15 @@ with the `input`, and returns the `output` in the JSON response.
 
 ## Acknowledgements
 
-- [oobabooga](https://github.com/oobabooga/text-generation-webui)
+- [Generative Labs YouTube Tutorials](https://www.youtube.com/@generativelabs)
+- [oobabooga Text Generation Web UI](https://github.com/oobabooga/text-generation-webui)
+
+## Additional Resources
+
+- [Postman Collection for this Worker](RunPod_Oobabooga_Worker.postman_collection.json)
+- [Generative Labs YouTube Tutorials](https://www.youtube.com/@generativelabs)
+- [Getting Started With RunPod Serverless](https://trapdoor.cloud/getting-started-with-runpod-serverless/)
+- [Serverless | Create a Custom Basic API](https://blog.runpod.io/serverless-create-a-basic-api/)
 
 ## Community and Contributing
 
