@@ -38,7 +38,7 @@ response and request status updates from the `/status` endpoint until
 you receive the `COMPLETED` status which indicates that your request
 was successful.
 
-### Available Ooobabooga APIs
+### Available Oobabooga APIs
 
 * [Chat](docs/api/chat.md)
 * [Generate](docs/api/generate.md)
@@ -64,10 +64,11 @@ was successful.
 ## Serverless Handler
 
 The serverless handler (`rp_handler.py`) is a Python script that handles
-inference requests.  It defines a function handler(event) that takes an
-inference request, runs the inference using the [oobabooba](
-https://github.com/oobabooga/text-generation-webui) Text Generation API,
-and returns the output as a JSON response in the following format:
+the API requests to your Endpoint using the [runpod](https://github.com/runpod/runpod-python)
+Python library.  It defines a function `handler(event)` that takes an
+API request (event), calls the appropriate [oobabooba](
+https://github.com/oobabooga/text-generation-webui) Text Generation API
+with the `input`, and returns the `output` in the JSON response.
 
 ## Acknowledgements
 
