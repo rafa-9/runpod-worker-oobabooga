@@ -1,6 +1,6 @@
 # oobabooga | RunPod Serverless Worker
 
-This is the source code for a [RunPod](https://runpod.io?ref=w18gds2n)
+This is the source code for a [RunPod](https://runpod.io?ref=2xxro4sy)
 Serverless worker that uses [Oobabooga Text Generation](
 https://github.com/oobabooga/text-generation-webui) API for
 LLM text generation AI tasks.
