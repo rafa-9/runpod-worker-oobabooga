@@ -1,4 +1,4 @@
-## Building the Worker with s Network Volume
+## Building the Worker with a Network Volume
 
 This will store your application on a Runpod Network Volume and
 build a light weight Docker image that runs everything
