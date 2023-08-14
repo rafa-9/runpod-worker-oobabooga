@@ -26,19 +26,14 @@ mkdir -p repositories
 cd repositories
 git clone https://github.com/turboderp/exllama
 pip3 install -r exllama/requirements.txt
-export AUTOGPTQ_VERSION="0.4.1"
-export CUDA_VERSION=""
-export TORCH_CUDA_ARCH_LIST="8.0;8.6+PTX;8.9;9.0"
-pip3 uninstall -y auto-gptq && \
-    pip3 install --no-cache-dir auto-gptq==${AUTOGPTQ_VERSION}
 ```
 7. Install the Serverless dependencies:
 ```bash
 pip3 install huggingface_hub runpod>=0.10.0
 ```
-8. Download a model, for example `TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ`:
+8. Download a model, for example `TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ`:
 ```bash
-python3 download-model.py TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ \
+python3 download-model.py TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ \
   --output /workspace/text-generation-webui/models
 ```
 9. Sign up for a Docker hub account if you don't already have one.
