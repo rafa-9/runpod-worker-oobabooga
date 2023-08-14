@@ -19,7 +19,7 @@ RUN apt update && \
   rm -rf /var/lib/apt/lists/* && \
   apt clean -y
 
-RUN pip3 install runpod requests
+RUN pip3 install runpod>=0.10.0 requests
 
 # Docker container start script
 COPY start_network_volume.sh /start.sh
