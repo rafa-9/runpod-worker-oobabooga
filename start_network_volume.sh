@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ"
+MODEL="TheBloke_airoboros-l2-70B-gpt4-1.4.1-GPTQ"
 
 echo "Worker Initiated"
 
@@ -15,6 +15,7 @@ nohup python3 server.py \
   --listen \
   --api \
   --model ${MODEL} \
+  --loader ExLlama \
   --listen-port 3000 \
   --api-blocking-port 5000 \
   --api-streaming-port 5005 &> /workspace/logs/textgen.log &
