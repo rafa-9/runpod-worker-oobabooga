@@ -41,6 +41,46 @@ CHAT_SCHEMA = {
         'required': False,
         'default': 'You'
     },
+    'name1': {
+        'type': str,
+        'required': False,
+        'default': 'name of user'
+    },
+    'name2': {
+        'type': str,
+        'required': False,
+        'default': 'You'
+    },
+    'context': {
+        'type': str,
+        'required': False,
+        'default': 'You'
+    },
+    'greeting': {
+        'type': str,
+        'required': False,
+        'default': 'You'
+    },
+    'name1_instruct': {
+        'type': str,
+        'required': False,
+        'default': 'You'
+    },
+    'name2_instruct': {
+        'type': str,
+        'required': False,
+        'default': 'You'
+    },
+    'context_instruct': {
+        'type': str,
+        'required': False,
+        'default': 'You'
+    },
+    'turn_template': {
+        'type': str,
+        'required': False,
+        'default': 'You'
+    },
     'regenerate': {
         'type': bool,
         'required': False,
