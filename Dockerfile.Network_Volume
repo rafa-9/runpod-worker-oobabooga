@@ -23,8 +23,9 @@ RUN apt update && \
 # Set Python
 RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
-# Install Worker dependencies
-RUN pip install requests runpod==0.10.0
+RUN source /workspace/venv/bin/activate && \
+  pip install requests runpod==0.10.0 && \
+  deactivate
 
 # Docker container start script
 COPY start_network_volume.sh /start.sh

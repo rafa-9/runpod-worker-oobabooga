@@ -11,6 +11,7 @@ ln -s /runpod-volume /workspace
 echo "Starting Oobabooga Text Generation Server"
 cd /workspace/text-generation-webui
 source /workspace/venv/bin/activate
+pip install requests runpod==0.10.0
 mkdir -p /workspace/logs
 nohup python3 server.py \
   --listen \
