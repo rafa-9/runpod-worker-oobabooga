@@ -6,6 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+RUN apk add py3-pip
+
 RUN pip3 install runpod requests
 
 # Upgrade apt packages and install required dependencies
