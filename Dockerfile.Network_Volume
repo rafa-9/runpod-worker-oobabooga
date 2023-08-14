@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt update && \
   apt upgrade -y && \
   apt install -y \
-  python3.10-venv \
+  python3-venv \
   python3-pip \
   python3-tk \
   python3-dev \
@@ -19,9 +19,6 @@ RUN apt update && \
   apt autoremove -y && \
   rm -rf /var/lib/apt/lists/* && \
   apt clean -y
-
-# Set Python
-RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
 # Install Worker dependencies
 RUN pip install requests runpod==0.10.0
