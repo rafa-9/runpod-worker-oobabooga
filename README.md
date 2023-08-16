@@ -7,8 +7,8 @@ LLM text generation AI tasks.
 
 ## Model
 
-The worker uses the [Pygmalion-13B-SuperHOT-8K-GPTQ](
-https://huggingface.co/TheBloke/Pygmalion-13B-SuperHOT-8K-GPTQ)
+The worker uses the [TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ](
+https://huggingface.co/TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ)
 model by [TheBloke](https://huggingface.co/TheBloke).  Feel free to fork
 the repo and switch it to an alternate model.
 

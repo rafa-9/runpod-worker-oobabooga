@@ -21,17 +21,12 @@ source /workspace/venv/bin/activate
 pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip3 install -r requirements.txt
 bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done'
-pip3 uninstall -y exllama
-mkdir -p repositories
-cd repositories
-git clone https://github.com/turboderp/exllama
-pip3 install -r exllama/requirements.txt
 ```
 7. Install the Serverless dependencies:
 ```bash
 pip3 install huggingface_hub runpod>=0.10.0
 ```
-8. Download a model, for example `TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ`:
+8. Download a model, for example `TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ`:
 ```bash
 cd /workspace/text-generation-webui
 python3 download-model.py TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ \

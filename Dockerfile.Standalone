@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 
-ARG MODEL="TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ"
+ARG MODEL="TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
@@ -32,19 +32,6 @@ RUN git clone https://github.com/oobabooga/text-generation-webui && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip3 install -r requirements.txt && \
     bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done' && \
-    pip3 uninstall -y exllama && \
-    mkdir -p repositories && \
-    cd repositories && \
-    git clone https://github.com/turboderp/exllama && \
-    pip3 install -r exllama/requirements.txt
-
-# Install AutoGPTQ, overwriting the version automatically installed by text-generation-webui
-ARG AUTOGPTQ="0.4.1"
-ENV CUDA_VERSION=""
-ENV TORCH_CUDA_ARCH_LIST="8.0;8.6+PTX;8.9;9.0"
-RUN source /workspace/text-generation-webui/venv/bin/activate && \
-    pip3 uninstall -y auto-gptq && \
-    pip3 install --no-cache-dir auto-gptq==${AUTOGPTQ} && \
     deactivate
 
 # Fetch the model
