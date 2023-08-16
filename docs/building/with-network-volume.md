@@ -29,7 +29,7 @@ pip3 install huggingface_hub runpod>=0.10.0
 8. Download a model, for example `TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ`:
 ```bash
 cd /workspace/text-generation-webui
-python3 download-model.py TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ \
+python3 download-model.py TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ \
   --output /workspace/text-generation-webui/models
 ```
 9. Sign up for a Docker hub account if you don't already have one.
