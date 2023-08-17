@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke_airoboros-l2-13B-gpt4-1.4.1-GPTQ"
+MODEL="TheBloke_WizardLM-70B-V1.0-GPTQ"
 
 echo "Worker Initiated"
 

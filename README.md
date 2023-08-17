@@ -7,8 +7,8 @@ LLM text generation AI tasks.
 
 ## Model
 
-The worker uses the [TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ](
-https://huggingface.co/TheBloke/airoboros-l2-13B-gpt4-1.4.1-GPTQ)
+The worker uses the [TheBloke/WizardLM-70B-V1.0-GPTQ](
+https://huggingface.co/TheBloke/WizardLM-70B-V1.0-GPTQ)
 model by [TheBloke](https://huggingface.co/TheBloke).  Feel free to fork
 the repo and switch it to an alternate model.
 
