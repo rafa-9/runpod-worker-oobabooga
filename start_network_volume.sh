@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke_WizardLM-70B-V1.0-GPTQ"
+MODEL="TheBloke_WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ"
 
 echo "Worker Initiated"
 

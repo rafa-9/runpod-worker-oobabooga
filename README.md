@@ -7,8 +7,8 @@ LLM text generation AI tasks.
 
 ## Model
 
-The worker uses the [TheBloke/WizardLM-70B-V1.0-GPTQ](
-https://huggingface.co/TheBloke/WizardLM-70B-V1.0-GPTQ)
+The worker uses the [TheBloke/WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ](
+https://huggingface.co/TheBloke/WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ)
 model by [TheBloke](https://huggingface.co/TheBloke).  Feel free to fork
 the repo and switch it to an alternate model.
 
