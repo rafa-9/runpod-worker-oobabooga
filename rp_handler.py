@@ -104,17 +104,18 @@ def handler(event):
             'error': validated_api['errors']
         }
 
-    endpoint, method, validated_input = validate_payload(event)
+    payload=event["input"]["payload"]
+    # endpoint, method, validated_input = validate_payload(event)
 
-    if 'errors' in validated_input:
-        return {
-            'error': validated_input['errors']
-        }
+    # if 'errors' in validated_input:
+    #     return {
+    #         'error': validated_input['errors']
+    #     }
 
-    if 'validated_input' in validated_input:
-        payload = validated_input['validated_input']
-    else:
-        payload = {}
+    # if 'validated_input' in validated_input:
+    #     payload = validated_input['validated_input']
+    # else:
+    #     payload = {}
 
     try:
         logger.log(f'Sending {method} request to: {endpoint}')

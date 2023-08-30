@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke/airoboros-l2-70B-gpt4-1.4.1-GPTQ"
-LOADER="ExLlama_HF"
+MODEL="TheBloke/Genz-70b-GPTQ"
+LOADER="exllama"
 
 echo "Worker Initiated"
 
