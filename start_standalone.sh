@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 MODEL="TheBloke/Genz-70b-GPTQ"
-LOADER="exllama"
 
 echo "Worker Initiated"
 
@@ -12,8 +11,9 @@ mkdir -p /workspace/logs
 nohup python3 server.py \
   --listen \
   --api \
+  --loader ExLlama \
   --model ${MODEL} \
-  --loader ${LOADER} \
+  --loader ExLlama \
   --listen-port 3000 \
   --api-blocking-port 5000 \
   --api-streaming-port 5005 &> /workspace/logs/textgen.log &
