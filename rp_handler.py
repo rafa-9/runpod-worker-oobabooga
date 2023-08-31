@@ -126,7 +126,7 @@ def handler(event):
     #     payload = {}
 
     try:
-        logger.log(f'Sending {event["input"]["method"]} request to: {event["input"]["endpoint"]}')
+        logger.log(f'Sending {method} request to: {endpoint}')
 
         if method == 'GET':
             response = send_post_request(endpoint, payload)
