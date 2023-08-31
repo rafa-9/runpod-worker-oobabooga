@@ -103,14 +103,16 @@ def validate_payload(event):
 # RunPod Handler                                                               #
 # ---------------------------------------------------------------------------- #
 def handler(event):
-    # validated_api = validate_api(event)
+    validated_api = validate_api(event)
 
-    # if 'errors' in validated_api:
-    #     return {
-    #         'error': validated_api['errors']
-    #     }
+    if 'errors' in validated_api:
+        return {
+            'error': validated_api['errors']
+        }
 
     payload=event["input"]["payload"]
+    endpoint=event["input"]["api"]["endpoint"]
+    method=event["input"]["api"]["method"]
     # endpoint, method, validated_input = validate_payload(event)
 
     # if 'errors' in validated_input:
@@ -124,7 +126,7 @@ def handler(event):
     #     payload = {}
 
     try:
-        logger.log(f'Sending {method} request to: {endpoint}')
+        logger.log(f'Sending {event["input"]["method"]} request to: {event["input"]["endpoint"]}')
 
         if method == 'GET':
             response = send_post_request(endpoint, payload)
