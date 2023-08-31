@@ -103,12 +103,12 @@ def validate_payload(event):
 # RunPod Handler                                                               #
 # ---------------------------------------------------------------------------- #
 def handler(event):
-    validated_api = validate_api(event)
+    # validated_api = validate_api(event)
 
-    if 'errors' in validated_api:
-        return {
-            'error': validated_api['errors']
-        }
+    # if 'errors' in validated_api:
+    #     return {
+    #         'error': validated_api['errors']
+    #     }
 
     payload=event["input"]["payload"]
     # endpoint, method, validated_input = validate_payload(event)
