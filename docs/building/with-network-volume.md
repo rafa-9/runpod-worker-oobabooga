@@ -12,6 +12,7 @@ inside the Docker image.
 5. Deploy the GPU Cloud pod.
 6. Once the pod is up, open a Terminal and install the required
    dependencies:
+
 ```bash
 cd /workspace
 git clone https://github.com/oobabooga/text-generation-webui.git
@@ -22,18 +23,24 @@ pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://dow
 pip3 install -r requirements.txt
 bash -c 'for req in extensions/*/requirements.txt ; do pip3 install -r "$req" ; done'
 ```
+
 7. Install the Serverless dependencies:
+
 ```bash
-pip3 install huggingface_hub runpod>=0.10.0
+pip3 install huggingface_hub runpod
 ```
+
 8. Download a model, for example `TheBloke/WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ`:
+
 ```bash
 cd /workspace/text-generation-webui
 python3 download-model.py TheBloke/WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ \
   --output /workspace/text-generation-webui/models
 ```
+
 9. Sign up for a Docker hub account if you don't already have one.
 10. Build the Docker image on your local machine and push to Docker hub:
+
 ```bash
 docker build -t dockerhub-username/runpod-worker-oobabooga:1.0.0 -f Dockerfile.Network_Volume .
 docker login
