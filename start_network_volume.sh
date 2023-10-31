@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke_Genz-70b-GPTQ"
+MODEL="TheBloke_SynthIA-70B-v1.5-GPTQ"
 
 echo "Worker Initiated"
 

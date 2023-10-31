@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 
-ARG MODEL="TheBloke/Genz-70b-GPTQ"
+ARG MODEL="TheBloke/SynthIA-70B-v1.5-GPTQ"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
