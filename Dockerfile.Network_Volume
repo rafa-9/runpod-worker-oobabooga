@@ -30,4 +30,4 @@ COPY schemas /schemas
 
 # Start the container
 RUN chmod +x /start.sh
-CMD /start.sh
+CMD [ "python3", "./start.sh" ]
