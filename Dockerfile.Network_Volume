@@ -20,6 +20,8 @@ RUN apt update && \
   rm -rf /var/lib/apt/lists/* && \
   apt clean -y
 
+RUN python3 --version
+
 # Install Worker dependencies
 RUN pip3 install --no-cache-dir requests runpod
 
