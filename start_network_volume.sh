@@ -18,7 +18,7 @@ nohup python3 server.py \
   --listen \
   --api \
   --model ${MODEL} \
-  --loader exllama \
+  --loader transformer \
   --listen-port 3000 \
   --api-blocking-port 5000 \
   --api-streaming-port 5005 &> /workspace/logs/textgen.log &
