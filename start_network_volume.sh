@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke/goliath-120b-GPTQ"
+MODEL="TheBloke_goliath-120b-GPTQ"
+
+echo "Running Python version:"
+python3 --version
 
 echo "Worker Initiated"
 
