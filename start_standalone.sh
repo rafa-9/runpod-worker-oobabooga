@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke/goliath-120b-GPTQ"
+MODEL="TheBloke/Mixtral-8x7B-Instruct-v0.1-GPTQ"
 
 echo "Worker Initiated"
 

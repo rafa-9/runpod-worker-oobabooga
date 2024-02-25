@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 
-ARG MODEL="TheBloke/goliath-120b-GPTQ"
+ARG MODEL="TheBloke/Mixtral-8x7B-Instruct-v0.1-GPTQ"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
