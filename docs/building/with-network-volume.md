@@ -15,7 +15,7 @@ inside the Docker image.
 
 ```bash
 cd /workspace
-git clone https://github.com/oobabooga/text-generation-webui.git
+git clone https://github.com/oobabooga/text-generation-webui.git --branch snapshot-2023-11-05
 cd text-generation-webui
 python3 -m venv /workspace/venv
 source /workspace/venv/bin/activate
