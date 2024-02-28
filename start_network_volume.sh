@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODEL="TheBloke/Mixtral-8x7B-Instruct-v0.1-GPTQ"
+MODEL="LoneStriker/Air-Striker-Mixtral-8x7B-Instruct-ZLoss-3.75bpw-h6-exl2"
 
 echo "Running Python version:"
 python3 --version
